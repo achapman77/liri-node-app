@@ -1,7 +1,7 @@
 // require("dotenv").config();
 
 var inquirer = require("inquirer");
-
+var moment = require("moment");
 // var keys = require("./keys.js");
 
 var axios = require("axios");
@@ -25,15 +25,33 @@ inquirer
     }
   ])
   .then(function(inquirerResponse) {
-      console.log(inquirerResponse.liriCommand);
-      console.log(inquirerResponse.userInput);
-      if (inquirerResponse.liriCommand === "Find Concert for a Band") {
-          concertThis(inquirerResponse.userInput)
-    //   } else if (inquirerResponse.liriCommand === "Spotify a Song") {
+    //   console.log(inquirerResponse.liriCommand);
+    //   console.log(inquirerResponse.userInput);
+      
+    //Need to add + inbetween user input words to enable API calls
+    //Therefore make user input into array
+    //loop through all the words in user input and add "+"
+      var userInput = "";
+    
+        var userInputArray = inquirerResponse.userInput.split(" ");
+        for (var i = 0; i < userInputArray.length; i++) {
 
-    //   }
+            if (i > 0 && i < userInputArray.length) {
+                userInput = userInput + "+" + userInputArray[i];
+            }
+            else {
+                userInput += userInputArray[i]
+            }
+        };
+
+      if (inquirerResponse.liriCommand === "Find Concert for a Band") {
+          concertThis(userInput)
+      } else if (inquirerResponse.liriCommand === "Spotify a Song") {
+
+      }
     
   });
+
 
 //concert-this
 // This will search the Bands in Town Artist Events API ("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp") for an artist and render the following information about each event to the terminal:
@@ -42,11 +60,18 @@ inquirer
     // Date of the Event (use moment to format this as "MM/DD/YYYY")
 function concertThis(userInput) {
 
-    var artist = userInput
+    var reFormatUserInput = userInput.split("+").join(" ").toUpperCase();
+
     axios
-    .get(`https://rest.bandsintown.com/artists/${artist}/events?app_id=codingbootcamp`)
+    .get(`https://rest.bandsintown.com/artists/${userInput}/events?app_id=codingbootcamp`)
     .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
+
+        var concertDate = response.data[0].datetime.split("T");
+        // console.log(concertDate);
+        console.log(moment(concertDate[0], 'YYYY-MM-DD').format('MM/DD/YYYY'));
+
+        console.log(`There's a ${reFormatUserInput} concert at the ${response.data[0].venue.name} in ${response.data[0].venue.city}, ${response.data[0].venue.region} on ${moment(concertDate[0], 'YYYY-MM-DD').format('MM/DD/YYYY')}`);
     })
     .catch(function(error) {
         if (error.response) {
