@@ -63,7 +63,7 @@ inquirer
               break;
           case "Spotify a Song":
               if (inquirerResponse.userInput === "") {
-                  spotifyAceofBase()
+                  spotifyAceOfBase()
               } else {
                 spotifyThisSong(inquirerResponse.userInput);
               }
@@ -148,9 +148,6 @@ function spotifyThisSong(userInput) {
     spotify
         .search({ type: 'track', query: `${userInput}`, limit: 10 })
         .then(function(response) {
-            // if () {
-
-            // }
             for (var i = 0; i < response.tracks.items.length; i++) {
                 
                 log(chalk.blue(`\nTRACK: ${response.tracks.items[i].name}`));
@@ -165,24 +162,17 @@ function spotifyThisSong(userInput) {
         })
         .catch(function(err) {
             console.log(err);
+            log(`Ace of Base it is`)
         });
-    
-    // spotify.search({ type: 'track', query: `${userInput}` }, function(err, data) {
-    //     if (err) {
-    //         return console.log('Error occurred: ' + err);
-    //     }
-        
-    //     console.log(data.tracks.items[0]); 
-    //     });
 };
 
-function spotifyAceofBase(userInput) {
+function spotifyAceOfBase(userInput) {
     
     spotify
         .search({ type: 'track', query: "The Sign", limit: 10 })
         .then(function(response) {
-
-            log(chalk.blue(`\nTRACK: ${response.tracks.items[8].name}`));
+            log(chalk.red(`\nYour reward for FAILURE to enter a track to search...`))
+            log(chalk.blue(`TRACK: ${response.tracks.items[8].name}`));
             log(chalk.green(`ARTIST(s): ${response.tracks.items[8].artists[0].name}`));
             log(chalk.yellow(`ALBUM: ${response.tracks.items[8].album.name}`));
             log(`PreVIEW: ${response.tracks.items[8].preview_url}`);
@@ -192,14 +182,6 @@ function spotifyAceofBase(userInput) {
         .catch(function(err) {
             console.log(err);
         });
-    
-    // spotify.search({ type: 'track', query: `${userInput}` }, function(err, data) {
-    //     if (err) {
-    //         return console.log('Error occurred: ' + err);
-    //     }
-        
-    //     console.log(data.tracks.items[0]); 
-    //     });
 };
 
 
