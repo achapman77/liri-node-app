@@ -65,9 +65,11 @@ inquirer
               if (inquirerResponse.userInput === "") {
                   spotifyAceOfBase()
               } else {
-                spotifyThisSong(inquirerResponse.userInput);
+                spotifyThisSong(userUrlQuery);
               }
-              
+              break;
+          case "Get Info for a Movie":
+              movieThis(userUrlQuery);
               break;
       }
     
@@ -196,7 +198,30 @@ function spotifyAceOfBase(userInput) {
     // * Plot of the movie.
     // * Actors in the movie.
 // If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
+function movieThis(userInput) {
+    var queryURL = `http://www.omdbapi.com/?t=${userInput}&y=&plot=short&apikey=trilogy`;
 
+    console.log(queryURL);
+
+    axios
+        .get(queryURL).then(
+            function (response) {
+                // log(response.data);
+                log(`\n${response.data.Title}`);
+                log(`RELEASED: ${response.data.Year} from ${response.data.Country} in ${response.data.Language}`);
+                log(`REVIEWS:`)
+                for (var i = 0; i < response.data.Ratings.length; i++) {
+                    log(`   ${response.data.Ratings[i].Source}: ${response.data.Ratings[i].Value}`);
+                };
+                log(`PLOT: ${response.data.Plot}`);
+                log(`STARRING: ${response.data.Actors}\n`);
+                
+                
+            }
+        );
+        
+
+};
 
 //do-what-it-says
 
