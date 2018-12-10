@@ -44,10 +44,16 @@ inquirer
             }
         };
 
-      if (inquirerResponse.liriCommand === "Find Concert for a Band") {
-          concertThis(userInput)
-      } else if (inquirerResponse.liriCommand === "Spotify a Song") {
+    //   if (inquirerResponse.liriCommand === "Find Concert for a Band") {
+    //       concertThis(userInput)
+    //   } else if (inquirerResponse.liriCommand === "Spotify a Song") {
 
+    //   }
+      var command = inquirerResponse.liriCommand;
+      switch (command) {
+          case "Find Concert for a Band":
+              concertThis(userInput);
+              break;
       }
     
   });
@@ -66,12 +72,16 @@ function concertThis(userInput) {
     .get(`https://rest.bandsintown.com/artists/${userInput}/events?app_id=codingbootcamp`)
     .then(function (response) {
         // console.log(response.data);
-
+        
         var concertDate = response.data[0].datetime.split("T");
-        // console.log(concertDate);
-        console.log(moment(concertDate[0], 'YYYY-MM-DD').format('MM/DD/YYYY'));
+        var concertDateFormatted = moment(concertDate[0], 'YYYY-MM-DD').format('MM/DD/YYYY');
+        //Calculate days from now til concert
+        var diffDays = (moment().diff(concertDate[0], "days")) * -1;
 
-        console.log(`There's a ${reFormatUserInput} concert at the ${response.data[0].venue.name} in ${response.data[0].venue.city}, ${response.data[0].venue.region} on ${moment(concertDate[0], 'YYYY-MM-DD').format('MM/DD/YYYY')}`);
+        // console.log(diffDays);
+
+        console.log(`There's a ${reFormatUserInput} concert at the ${response.data[0].venue.name} in ${response.data[0].venue.city}, ${response.data[0].venue.region} on ${concertDateFormatted}.  Hurry and buy tickets soon...That's only ${diffDays} days from now!`);
+
     })
     .catch(function(error) {
         if (error.response) {
