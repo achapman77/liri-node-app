@@ -9,7 +9,9 @@ var moment = require('moment');
 
 var axios = require('axios');
 
-var omdb = require('omdb');
+var fs = require('fs');
+
+// var omdb = require('omdb');
 
 const chalk = require('chalk');
 // const error = chalk.bold.red;
@@ -24,11 +26,11 @@ inquirer
       choices: ["Find Concert for a Band", "Spotify a Song", "Get Info for a Movie", "Do what it says"],
       name: "liriCommand"
     },
-    {
-      type: "input",
-      message: "What would you like Liri to find?",
-      name: "userInput",
-    }
+    // {
+    //   type: "input",
+    //   message: "What would you like Liri to find?",
+    //   name: "userInput",
+    // }
   ])
   .then(function(inquirerResponse) {
     //   console.log(inquirerResponse.liriCommand);
@@ -37,18 +39,18 @@ inquirer
     //Need to add + inbetween user input words to enable API calls
     //Therefore make user input into array
     //loop through all the words in user input and add "+"
-      var userUrlQuery = "";
+    //   var userUrlQuery = "";
     
-        var userInputArray = inquirerResponse.userInput.split(" ");
-        for (var i = 0; i < userInputArray.length; i++) {
+    //     var userInputArray = inquirerResponse.userInput.split(" ");
+    //     for (var i = 0; i < userInputArray.length; i++) {
 
-            if (i > 0 && i < userInputArray.length) {
-                userUrlQuery = userUrlQuery + "+" + userInputArray[i];
-            }
-            else {
-                userUrlQuery += userInputArray[i]
-            }
-        };
+    //         if (i > 0 && i < userInputArray.length) {
+    //             userUrlQuery = userUrlQuery + "+" + userInputArray[i];
+    //         }
+    //         else {
+    //             userUrlQuery += userInputArray[i]
+    //         }
+    //     };
 
     //   if (inquirerResponse.liriCommand === "Find Concert for a Band") {
     //       concertThis(userInput)
@@ -56,25 +58,75 @@ inquirer
 
     //   }
       var command = inquirerResponse.liriCommand;
+      
       switch (command) {
           case "Find Concert for a Band":
-            //   userUrlQuery(inquirerResponse.userInput);
-              concertThis(userUrlQuery);
+              inquirer
+                  .prompt({
+                      type: "input",
+                      message: "What Band?",
+                      name: "userInput",
+                  })
+                  .then(function (inquirerResponse) {
+                    var userUrlQuery = "";
+    
+                    var userInputArray = inquirerResponse.userInput.split(" ");
+                    for (var i = 0; i < userInputArray.length; i++) {
+            
+                        if (i > 0 && i < userInputArray.length) {
+                            userUrlQuery = userUrlQuery + "+" + userInputArray[i];
+                        }
+                        else {
+                            userUrlQuery += userInputArray[i]
+                        }
+                    };
+                    //   formatUserInput(userInput);
+                    //   log(userUrlQuery);
+                      concertThis(userUrlQuery);
+                  });
+              
               break;
           case "Spotify a Song":
               if (inquirerResponse.userInput === "") {
-                  spotifyAceOfBase()
-              } else {
+                spotifyAceOfBase()
+              }
+              else {
                 spotifyThisSong(userUrlQuery);
               }
               break;
           case "Get Info for a Movie":
-              movieThis(userUrlQuery);
+              if (inquirerResponse.userInput === "") {
+                movieMrNobody();
+              }
+              else {
+                movieThis(userUrlQuery);
+              }
+              break;
+          case "Do what it says":
+              doWhatItSays();
               break;
       }
     
   });
 
+// var formatUserInput = (userInput, userUrlQuery) => {
+//     // var userUrlQuery = "";
+    
+//     var userInputArray = userInput.split(" ");
+//     for (var i = 0; i < userInputArray.length; i++) {
+
+//         if (i > 0 && i < userInputArray.length) {
+//             userUrlQuery = userUrlQuery + "+" + userInputArray[i];
+//         }
+//         else {
+//             userUrlQuery += userInputArray[i]
+//         }
+//     // log(userUrlQuery);
+//     // return userUrlQuery;
+//     };
+//     log(userUrlQuery);
+//     return userUrlQuery;
+// }
 // var userUrlQuery = (userInput) => {
 //     var userUrlQuery = "";
     
@@ -204,24 +256,91 @@ function movieThis(userInput) {
     console.log(queryURL);
 
     axios
-        .get(queryURL).then(
-            function (response) {
+        .get(queryURL)
+        .then(function (response) {
                 // log(response.data);
-                log(`\n${response.data.Title}`);
+                log(chalk.bgRed.bold.white(`\n               ${response.data.Title}                `));
                 log(`RELEASED: ${response.data.Year} from ${response.data.Country} in ${response.data.Language}`);
                 log(`REVIEWS:`)
                 for (var i = 0; i < response.data.Ratings.length; i++) {
-                    log(`   ${response.data.Ratings[i].Source}: ${response.data.Ratings[i].Value}`);
+                    log(`   * ${response.data.Ratings[i].Source}: ${response.data.Ratings[i].Value}`);
                 };
                 log(`PLOT: ${response.data.Plot}`);
-                log(`STARRING: ${response.data.Actors}\n`);
-                
-                
+                log(`STARRING: ${response.data.Actors}\n`);   
+        })
+        .catch(function(error) {
+            if (error.response) {
+              // The request was made and the server responded with a status code
+              // that falls out of the range of 2xx
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              // The request was made but no response was received
+              // `error.request` is an object that comes back with details pertaining to the error that occurred.
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log("Error", error.message);
             }
-        );
-        
+            console.log(error.config);
+          });
 
 };
 
+
+function movieMrNobody(userInput) {
+    var queryURL = `http://www.omdbapi.com/?t=Mr.+Nobody&y=&plot=short&apikey=trilogy`;
+
+    console.log(queryURL);
+
+    axios
+        .get(queryURL)
+        .then(function (response) {
+                // log(response.data);
+                log(chalk.bgRed.bold.white(`\nSince you FAILED to provide Movie to search...we recommend: `))
+                log(chalk.bgRed.bold.white(`                        ${response.data.Title}                          `));
+                log(`RELEASED: ${response.data.Year} from ${response.data.Country} in ${response.data.Language}`);
+                log(`REVIEWS:`)
+                for (var i = 0; i < response.data.Ratings.length; i++) {
+                    log(`   * ${response.data.Ratings[i].Source}: ${response.data.Ratings[i].Value}`);
+                };
+                log(`PLOT: ${response.data.Plot}`);
+                log(`STARRING: ${response.data.Actors}\n`);   
+        })
+        .catch(function(error) {
+            if (error.response) {
+              // The request was made and the server responded with a status code
+              // that falls out of the range of 2xx
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              // The request was made but no response was received
+              // `error.request` is an object that comes back with details pertaining to the error that occurred.
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log("Error", error.message);
+            }
+            console.log(error.config);
+          });
+
+};
 //do-what-it-says
+
+function doWhatItSays() {
+    fs.readFile("random.txt", "utf8", function (error, data) {
+     
+        if (error) {
+            return console.log(error);
+        }
+
+        console.log(data);
+
+
+    });
+
+
+};
 
