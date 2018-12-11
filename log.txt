@@ -2,3 +2,48 @@
 COMMAND:concertThis, QUERY:Beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
 COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
 COMMAND:concertThis, QUERY:the+rolling+stones, VENUE:Hard Rock Stadium, CITY:Miami Gardens, REGION:FL, DATE:04/20/2019||
+COMMAND:concertThis, QUERY:beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:snow+patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:snow+patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:snow+patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:The+Rolling+Stones, VENUE:Hard Rock Stadium, CITY:Miami Gardens, REGION:FL, DATE:04/20/2019||
+COMMAND:concertThis, QUERY:Beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:The+Rolling+Stones, VENUE:Hard Rock Stadium, CITY:Miami Gardens, REGION:FL, DATE:04/20/2019||
+COMMAND:concertThis, QUERY:The+Rolling+Stones, VENUE:Hard Rock Stadium, CITY:Miami Gardens, REGION:FL, DATE:04/20/2019||
+COMMAND:concertThis, QUERY:Beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:The+Rolling+Stones, VENUE:Hard Rock Stadium, CITY:Miami Gardens, REGION:FL, DATE:04/20/2019||
+COMMAND:concertThis, QUERY:The+Rolling+Stones, VENUE:Hard Rock Stadium, CITY:Miami Gardens, REGION:FL, DATE:04/20/2019||
+COMMAND:concertThis, QUERY:Beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:The+Rolling+Stones, VENUE:Hard Rock Stadium, CITY:Miami Gardens, REGION:FL, DATE:04/20/2019||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:The+Rolling+Stones, VENUE:Hard Rock Stadium, CITY:Miami Gardens, REGION:FL, DATE:04/20/2019||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:The 3Arena, CITY:Dublin, REGION:, DATE:12/11/2018||
+COMMAND:concertThis, QUERY:Beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:The+Rolling+Stones, VENUE:Hard Rock Stadium, CITY:Miami Gardens, REGION:FL, DATE:04/20/2019||
+COMMAND:concertThis, QUERY:Snow+Patrol, VENUE:Ziggo Dome, CITY:Nieuw-amsterdam, REGION:, DATE:01/14/2019||
+COMMAND:concertThis, QUERY:Beck, VENUE:Shaky Knees Music Festival (May 3-5), CITY:Atlanta, REGION:GA, DATE:05/03/2019||
+COMMAND:concertThis, QUERY:The+Rolling+Stones, VENUE:Hard Rock Stadium, CITY:Miami Gardens, REGION:FL, DATE:04/20/2019||
