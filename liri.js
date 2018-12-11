@@ -3,7 +3,7 @@ var keys = require("./keys.js");
 var Spotify = require('node-spotify-api')
 var spotify = new Spotify(keys.spotify);
 
-var inquirer = require('inquirer');
+
 
 var moment = require('moment');
 
@@ -11,11 +11,11 @@ var axios = require('axios');
 
 var fs = require('fs');
 
-// var omdb = require('omdb');
+// Bonus
+var inquirer = require('inquirer');
 
 const chalk = require('chalk');
-// const error = chalk.bold.red;
-// const warning = chalk.keyword('orange');
+
 const log = console.log;
 
 inquirer
@@ -33,30 +33,7 @@ inquirer
     // }
   ])
   .then(function(inquirerResponse) {
-    //   console.log(inquirerResponse.liriCommand);
-    //   console.log(inquirerResponse.userInput);
-      
-    //Need to add + inbetween user input words to enable API calls
-    //Therefore make user input into array
-    //loop through all the words in user input and add "+"
-    //   var userUrlQuery = "";
-    
-    //     var userInputArray = inquirerResponse.userInput.split(" ");
-    //     for (var i = 0; i < userInputArray.length; i++) {
-
-    //         if (i > 0 && i < userInputArray.length) {
-    //             userUrlQuery = userUrlQuery + "+" + userInputArray[i];
-    //         }
-    //         else {
-    //             userUrlQuery += userInputArray[i]
-    //         }
-    //     };
-
-    //   if (inquirerResponse.liriCommand === "Find Concert for a Band") {
-    //       concertThis(userInput)
-    //   } else if (inquirerResponse.liriCommand === "Spotify a Song") {
-
-    //   }
+ 
       var command = inquirerResponse.liriCommand;
       
       switch (command) {
@@ -68,6 +45,43 @@ inquirer
                       name: "userInput",
                   })
                   .then(function (inquirerResponse) {
+                    
+                    //REFACTOR BELOW!!!--------------
+                    var userUrlQuery = "";
+
+                    var userInputArray = inquirerResponse.userInput.split(" ");
+                    for (var i = 0; i < userInputArray.length; i++) {
+            
+                        if (i > 0 && i < userInputArray.length) {
+                            userUrlQuery = userUrlQuery + "+" + userInputArray[i];
+                        }
+                        else {
+                            userUrlQuery += userInputArray[i]
+                        }
+                    };
+                    //REFACTOR ABOVE!!!--------------
+                      if (inquirerResponse.userInput === "") {
+                        log(chalk.red.bold(`\nNo Concert for You! (You forgot to enter band name).\n`))
+                      }
+                      else {
+                         //   formatUserInput(inquirerResponse);
+                        //   log(userUrlQuery);
+                      concertThis(userUrlQuery); 
+                      }
+                    
+                  });
+              
+              break;
+          case "Spotify a Song":
+              inquirer
+                  .prompt({
+                    type: "input",
+                    message: "What Song?",
+                    name: "userInput",
+                  })
+                  .then(function (inquirerResponse) {
+                    
+                    //REFACTOR BELOW!!!--------------
                     var userUrlQuery = "";
     
                     var userInputArray = inquirerResponse.userInput.split(" ");
@@ -80,27 +94,47 @@ inquirer
                             userUrlQuery += userInputArray[i]
                         }
                     };
-                    //   formatUserInput(userInput);
-                    //   log(userUrlQuery);
-                      concertThis(userUrlQuery);
-                  });
-              
-              break;
-          case "Spotify a Song":
-              if (inquirerResponse.userInput === "") {
-                spotifyAceOfBase()
-              }
-              else {
-                spotifyThisSong(userUrlQuery);
-              }
+                    //REFACTOR ABOVE!!!--------------
+                    
+                      
+                    if (inquirerResponse.userInput === "") {
+                    spotifyAceOfBase()
+                    }
+                    else {
+                    spotifyThisSong(userUrlQuery);
+                    }
+                  })
               break;
           case "Get Info for a Movie":
-              if (inquirerResponse.userInput === "") {
-                movieMrNobody();
-              }
-              else {
-                movieThis(userUrlQuery);
-              }
+              inquirer
+                  .prompt({
+                      type: "input",
+                      message: "What Movie?",
+                      name: "userInput",
+                  })
+                  .then(function (inquirerResponse) {
+                    //REFACTOR BELOW!!!--------------
+                    var userUrlQuery = "";
+    
+                    var userInputArray = inquirerResponse.userInput.split(" ");
+                    for (var i = 0; i < userInputArray.length; i++) {
+            
+                        if (i > 0 && i < userInputArray.length) {
+                            userUrlQuery = userUrlQuery + "+" + userInputArray[i];
+                        }
+                        else {
+                            userUrlQuery += userInputArray[i]
+                        }
+                    };
+                    //REFACTOR ABOVE!!!--------------
+                      
+                    if (inquirerResponse.userInput === "") {
+                        movieMrNobody();
+                      }
+                      else {
+                        movieThis(userUrlQuery);
+                      }
+                  });
               break;
           case "Do what it says":
               doWhatItSays();
@@ -165,6 +199,15 @@ function concertThis(userUrlQuery) {
 
         log(chalk.blue(`\nThere's a ${reFormatUserInput} concert at the ${response.data[0].venue.name} in ${response.data[0].venue.city}, ${response.data[0].venue.region} on ${concertDateFormatted}.\n`) +
         chalk.red(`Hurry and buy tickets soon...That's only ${diffDays} days from now!\n`));
+        
+        fs.appendFile("log.txt", `COMMAND:concertThis, QUERY:${userUrlQuery}, VENUE:${response.data[0].venue.name}, CITY:${response.data[0].venue.city}, REGION:${response.data[0].venue.region}, DATE:${concertDateFormatted}||\n`, function (err) {
+            if (err) {
+                return console.log(err);
+              }
+            
+              // Otherwise, it will print: "movies.txt was updated!"
+              console.log(chalk.green("log.txt was updated!"));
+        });
 
     })
     .catch(function(error) {
@@ -226,10 +269,10 @@ function spotifyAceOfBase(userInput) {
         .search({ type: 'track', query: "The Sign", limit: 10 })
         .then(function(response) {
             log(chalk.red(`\nYour reward for FAILURE to enter a track to search...`))
-            log(chalk.blue(`TRACK: ${response.tracks.items[8].name}`));
-            log(chalk.green(`ARTIST(s): ${response.tracks.items[8].artists[0].name}`));
-            log(chalk.yellow(`ALBUM: ${response.tracks.items[8].album.name}`));
-            log(`PreVIEW: ${response.tracks.items[8].preview_url}`);
+            log(chalk.blue(`TRACK: The Sign`));
+            log(chalk.green(`ARTIST(s): Ace of Base`));
+            log(chalk.yellow(`ALBUM: The Sign (US Album) [Remastered]`));
+            log(`PreVIEW: https://p.scdn.co/mp3-preview/4c463359f67dd3546db7294d236dd0ae991882ff?cid=542aa62ee5dd45d99be2d8c03615336c`);
             log(chalk.red(`--------------------------------------------------`));
 
         })
@@ -336,7 +379,21 @@ function doWhatItSays() {
             return console.log(error);
         }
 
-        console.log(data);
+        log(data);
+
+        var dataArr = data.split(",");
+        log(dataArr);
+
+        for (var i = 0; i < dataArr.length; i++) {
+            if (dataArr[i] === 'concertThis') {
+                concertThis(dataArr[i+1]);
+            }
+            else if (dataArr[i] === 'spotifyThisSong') {
+                spotifyThisSong(dataArr[i+1])
+            }
+        }
+        
+
 
 
     });
