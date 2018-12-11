@@ -30,8 +30,9 @@ https://drive.google.com/file/d/1pN9M9rpmyGxDb99XXXeC3pCw07Sl12El/view
 * Use of inquirer - Check out those dynamic questions!
 * Use of Chalk - Check out those beautiful console.logs!
 * Use of fs.readFile & .appendFile
+* Robust doWhatItSays functionality
 
 ##Future Improvements:
-* Expand and randomize doWhatItSays functionality
-* Refactor the userURLQuery logic to avoid code duplication
-* Add 5th function to read/execute all from the log.txt file.
+[x] Expand and randomize doWhatItSays functionality
+[x] Refactor the userURLQuery logic to avoid code duplication
+[ ] Add 5th function to read/execute all from the log.txt file.
