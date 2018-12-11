@@ -33,6 +33,6 @@ https://drive.google.com/file/d/1pN9M9rpmyGxDb99XXXeC3pCw07Sl12El/view
 * Robust doWhatItSays functionality
 
 ## Future Improvements:
-[x] Expand and randomize doWhatItSays functionality
-[x] Refactor the userURLQuery logic to avoid code duplication
-[ ] Add 5th function to read/execute all from the log.txt file.
+* [x] Expand and randomize doWhatItSays functionality
+* [x] Refactor the userURLQuery logic to avoid code duplication
+* [ ] Add 5th function to read/execute all from the log.txt file.
